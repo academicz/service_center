@@ -19,6 +19,10 @@ class ServiceRequest extends Model
     {
         return $this->hasOne('App\Models\ServiceResponse');
     }
+    public function service_feedback()
+    {
+        return $this->hasOne('App\Models\ServiceFeedback','service_id');
+    }
     public function return_info()
     {
         return $this->hasOne('App\Models\ReturnInfo');

@@ -137,7 +137,8 @@
                                 </table>
                             @endif
                             @if ($serviceRequest->return_info)
-                                <table class="table table-hover table-bordered table-striped product-table text-capitalize">
+                                <table
+                                    class="table table-hover table-bordered table-striped product-table text-capitalize">
                                     <tr>
                                         <th colspan="4">Return Info</th>
                                     </tr>
@@ -159,6 +160,46 @@
                                     </tr>
                                 </table>
                             @endif
+                            <h4 style="margin:0">Feedback</h4>
+                            @if ($serviceRequest->status==3 && !$serviceRequest->service_feedback)
+
+                                <form action="{{route('addFeedback')}}" method="post">
+                                    {{ csrf_field() }}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Title" name="title">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <textarea class="form-control" placeholder="Description" name="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="serviceId" value="{{$serviceRequest->id}}" >
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <button class="btn btn-success">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                @elseif($serviceRequest->service_feedback)
+                                <div>
+                                    <strong>
+                                        {{$serviceRequest->service_feedback->title}}
+                                    </strong>
+                                </div>
+                                <div>
+                                    {{$serviceRequest->service_feedback->description}}
+                                </div>
+                            @endif
+
+
                             <h4 style="margin:0">Service Request Images</h4>
                             <br>
                             @foreach($serviceRequest->service_request_images as $image)

@@ -16,7 +16,9 @@ class CreateServiceFeedbacksTable extends Migration
         Schema::create('service_feedbacks', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->
+            $table->integer('service_id');
+            $table->string('title');
+            $table->string('description');
         });
     }
 

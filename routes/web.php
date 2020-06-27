@@ -223,6 +223,10 @@ Route::group([
         'uses' => 'UserController@confirmPayment',
         'as' => 'confirmPayment'
     ]);
+    Route::post('add-feedback', [
+        'uses' => 'UserController@addFeedback',
+        'as' => 'addFeedback'
+    ]);
 });
 
 Route::get('file/{filename}', [

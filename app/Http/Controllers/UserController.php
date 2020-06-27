@@ -6,6 +6,7 @@ use App\Constants\Constants;
 use App\Models\Login;
 use App\Models\Registration;
 use App\Models\ServiceCenter;
+use App\Models\ServiceFeedback;
 use App\Models\ServiceRequest;
 use App\Models\ServiceRequestImage;
 use App\Models\ShopType;
@@ -190,13 +191,16 @@ class UserController extends Controller
 
     public function addFeedback(Request $request)
     {
-        $request = $request->validate([
-            'cardNumber' => 'required|numeric|digits:16',
-            'name' => 'required',
-            'cvv' => 'required|numeric|digits:3',
-        ]);
-        session()->put('request', $request);
-        return redirect()->route('getBank');
+        echo $request['data']['serviceId'];
+        $feedback = new ServiceFeedback();
+        $feedback->service_id=$request['serviceId'];
+        $feedback->title = $request['serviceId'];
+        $feedback->description = $request['description'];
+        $feedback->save();
+
+
+        return redirect()->route('requestStatus',['id'=>$request['serviceId']]);
+
     }
 
 }
