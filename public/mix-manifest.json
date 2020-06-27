@@ -1,0 +1,11 @@
+{
+    "/js/lazy-js-components/accounting/components/Receipt.js": "/js/lazy-js-components/accounting/components/Receipt.js",
+    "/js/lazy-js-components/accounting/components/CashBook.js": "/js/lazy-js-components/accounting/components/CashBook.js",
+    "/js/lazy-js-components/accounting/components/Particulars.js": "/js/lazy-js-components/accounting/components/Particulars.js",
+    "/js/lazy-js-components/accounting/components/ParticularCategories.js": "/js/lazy-js-components/accounting/components/ParticularCategories.js",
+    "/js/lazy-js-components/accounting/components/Voucher.js": "/js/lazy-js-components/accounting/components/Voucher.js",
+    "/js/lazy-js-components/accounting/components/Bill.js": "/js/lazy-js-components/accounting/components/Bill.js",
+    "/js/lazy-js-components/accounting/components/containers/DefaultContainer.js": "/js/lazy-js-components/accounting/components/containers/DefaultContainer.js",
+    "/Accounting/js/app.js": "/Accounting/js/app.js",
+    "/Accounting/css/app.css": "/Accounting/css/app.css"
+}

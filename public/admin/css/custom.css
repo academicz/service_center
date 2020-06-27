@@ -1,0 +1,54 @@
+/**
+ * Reusable
+ */
+input[type="date"],input[type="time"] {
+    height: 32px !important;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.spinner {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+@media print {
+    .print-none {
+        display: none;
+    }
+}
+
+/*
+ * Certificate
+ */
+.cert-p-date {
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.cert-declaration {
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.cert-top {
+    line-height: 25px;
+}
+
+.cert-sub-label {
+    padding: 15px;
+    font-size: 20px;
+}
