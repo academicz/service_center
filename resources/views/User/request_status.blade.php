@@ -168,18 +168,20 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Title" name="title">
+                                                <input type="text" class="form-control" placeholder="Title"
+                                                       name="title">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <textarea class="form-control" placeholder="Description" name="description"></textarea>
+                                                <textarea class="form-control" placeholder="Description"
+                                                          name="description"></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="serviceId" value="{{$serviceRequest->id}}" >
+                                    <input type="hidden" name="serviceId" value="{{$serviceRequest->id}}">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -188,7 +190,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                @elseif($serviceRequest->service_feedback)
+                            @elseif($serviceRequest->service_feedback)
                                 <div>
                                     <strong>
                                         {{$serviceRequest->service_feedback->title}}
@@ -197,6 +199,12 @@
                                 <div>
                                     {{$serviceRequest->service_feedback->description}}
                                 </div>
+                                @if($serviceRequest->service_feedback->replay!='0')
+                                    <div class="margin-left:25px">
+                                        <strong>Replay</strong>:
+                                         {{$serviceRequest->service_feedback->replay}}
+                                    </div>
+                                @endif
                             @endif
 
 

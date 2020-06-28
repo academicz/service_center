@@ -196,6 +196,7 @@ class UserController extends Controller
         $feedback->service_id=$request['serviceId'];
         $feedback->title = $request['serviceId'];
         $feedback->description = $request['description'];
+        $feedback->replay='0';
         $feedback->save();
 
 

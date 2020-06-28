@@ -9,6 +9,7 @@ use App\Models\Login;
 use App\Models\Registration;
 use App\Models\ReturnInfo;
 use App\Models\ServiceCenter;
+use App\Models\ServiceFeedback;
 use App\Models\ServiceRequest;
 use App\Models\ServiceResponse;
 use App\Models\ShopImage;
@@ -95,7 +96,13 @@ class ServiceCenterController extends Controller
         $requests = ServiceRequest::where('service_center_id', $this->getServiceCenter()->id)->paginate(Constants::$PAGINATION);
         return view('Shop.service_requests', compact('requests'));
     }
+    public function addServiceReplay(Request $request){
 
+        $feedback = ServiceFeedback::findOrFail($request['id']);
+        $feedback->replay = $request['replay'];
+        $feedback->save();
+        return redirect()->route('serviceRequest',['id'=>$feedback->service_id]);
+    }
     public function getServiceRequest($id)
     {
         $request = ServiceRequest::where([['id', $id], ['service_center_id', $this->getServiceCenter()->id]])->firstOrFail();

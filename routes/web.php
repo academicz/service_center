@@ -142,6 +142,10 @@ Route::group([
         'uses' => 'ServiceCenterController@viewReport',
         'as'=>'viewReports',
     ]);
+    Route::post('add-service-replay', [
+        'uses' => 'ServiceCenterController@addServiceReplay',
+        'as'=>'addServiceReplay',
+    ]);
 });
 
 /**

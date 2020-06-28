@@ -139,6 +139,31 @@
                                         @endif
                                     </td>
                                 </tr>
+                                @if($request->status==App\Constants\Constants::$CLOSED_REQUEST && $request->service_feedback->replay!='' )
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="form-group">
+                                            <strong>Feedback</strong>  {{$request->service_feedback->title}}:{{$request->service_feedback->description}}
+                                            </div>
+
+                                                @if($request->service_feedback->replay=='0')
+                                                <form action="{{route('addServiceReplay')}}" method="post">
+                                                    {{csrf_field()}}
+                                                    <div class="form-group">
+                                                        <textarea placeholder="Feedback Replay" type="text" name="replay" class="form-control"></textarea>
+                                                    </div>
+                                                    <input type="hidden" name="id" value="{{$request->service_feedback->id}}">
+                                                    <div class="form-group">
+                                                    <button class="btn btn-success">Add Feedback Replay</button>
+                                                    </div>
+                                                </form>
+                                                    @else
+                                                    <strong>Replay</strong>: {{$request->service_feedback->replay}}
+                                            @endif
+
+                                        </td>
+                                    </tr>
+                                @endif
                             </table>
                         @endif
                         @if ($request->return_info)
