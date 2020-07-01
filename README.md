@@ -11,13 +11,13 @@
 Admin dashboard available at /e2care
 
 1. Admin can add shop types
-2. Can verify and approve,reject and suspend shop registrations
+2. Can verify, approve, reject and suspend shop registrations
 3. Can see service overview of shops
 #### Shop
 Shop dashboard available at /shop
 
 1. Shop can see service requests
-2. Take decide actions on the request such as
+2. Take decided actions on the request such as
     1. Acept/reject request
     2. Povide pickup details (if accepted)
     3. Mark pickup
