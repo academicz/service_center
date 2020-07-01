@@ -17,7 +17,7 @@ Admin dashboard available at /e2care
 Shop dashboard available at /shop
 
 1. Shop can see service requests
-2. Take decide actions on the request such as
+2. Take decided actions on the request such as
     1. Acept/reject request
     2. Povide pickup details (if accepted)
     3. Mark pickup
