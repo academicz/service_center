@@ -50,6 +50,6 @@ Shop dashboard available at /shop
     
 5. Run dev server
     
-    `php artisan serve `
+    `php artisan serve`
     
   
