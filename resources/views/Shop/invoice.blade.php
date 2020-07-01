@@ -190,18 +190,27 @@
                                     <button class="btn btn-success" @click="addEntry">ADD</button>
                                 </td>
                             </tr>
+                            <tr class="print-none">
+                                <td>
+                                    <select class="form-control" v-model="description2">
+                                        <option :value="item" v-for="(item,index) in stocks">@{{item.item}}</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">
+                                    <input placeholder="Quantity" type="number" class="form-control" v-model="quantity2">
+                                </td>
+                                <td class="text-center">
+                                    <input placeholder="Price" readonly type="number" class="form-control" v-model="description2.amount">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-success" @click="addEntry2">ADD</button>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                         <table class="table invoice-total">
                             <tbody>
-                            {{--<tr>--}}
-                            {{--<td><strong>Sub Total :</strong></td>--}}
-                            {{--<td>$538.06</td>--}}
-                            {{--</tr>--}}
-                            {{--<tr>--}}
-                            {{--<td><strong>TAX :</strong></td>--}}
-                            {{--<td>$73.98</td>--}}
-                            {{--</tr>--}}
+
                             <tr>
                                 <td><strong>TOTAL :</strong></td>
                                 <td class="text-bold h4"><i class="fa fa-rupee"></i> @{{ total }}</td>
@@ -228,21 +237,43 @@
         data: {
           invoiceId: '',
           description: '',
+          description2: '',
           quantity: '',
+          quantity2: '',
           price: '',
-          invoices: []
+          price2: '',
+            item2:'',
+          invoices: [],
+
+            stocks:[],
         },
         methods: {
-          addEntry() {
+          addEntry2() {
             this.invoices.push({
-              description: this.description,
-              quantity: this.quantity,
-              price: this.price,
-              total: this.quantity * this.price
+              description:  this.description2.item,
+              quantity: this.quantity2,
+              price: this.description2.amount,
+              total: this.quantity2 * this.description2.amount,
+                item: this.description2.id,
             });
             this.description = '';
             this.quantity = '';
             this.price = '';
+              this.item2 = '';
+          },
+            addEntry() {
+            this.invoices.push({
+              description: this.description,
+              quantity: this.quantity,
+              price: this.price,
+              total: this.quantity * this.price,
+
+                item:0,
+            });
+            this.description = '';
+            this.quantity = '';
+            this.price = '';
+
           },
           saveInvoice() {
             axios.post('/shop/close-service-entry', {
@@ -254,6 +285,20 @@
             })
               .then(({data}) => {
                 this.invoiceId = data.invoiceId;
+              })
+              .catch(function (error) {
+                console.log(error);
+              })
+          },
+          get_stock() {
+            axios.get('/shop/stock', {
+              params: {
+                json:true,
+              }
+            })
+              .then(({data}) => {
+               this.stocks = data.stocks;
+                // this.price2 = this.stocks[0].amount;
               })
               .catch(function (error) {
                 console.log(error);
@@ -271,7 +316,10 @@
             }
             return 0;
           }
-        }
+        },
+          mounted(){
+            this.get_stock();
+          }
       })
     </script>
 @endsection

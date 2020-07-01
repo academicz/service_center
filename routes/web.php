@@ -142,6 +142,14 @@ Route::group([
         'uses' => 'ServiceCenterController@viewReport',
         'as'=>'viewReports',
     ]);
+    Route::get('stock', [
+        'uses' => 'ServiceCenterController@getStockPage',
+        'as'=>'getStockPage',
+    ]);
+    Route::post('stock', [
+        'uses' => 'ServiceCenterController@saveStock',
+        'as'=>'saveStock',
+    ]);
     Route::post('add-service-replay', [
         'uses' => 'ServiceCenterController@addServiceReplay',
         'as'=>'addServiceReplay',

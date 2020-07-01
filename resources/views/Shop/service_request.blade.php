@@ -139,7 +139,7 @@
                                         @endif
                                     </td>
                                 </tr>
-                                @if($request->status==App\Constants\Constants::$CLOSED_REQUEST && $request->service_feedback->replay!='' )
+                                @if($request->status==App\Constants\Constants::$CLOSED_REQUEST && $request->service_feedback && $request->service_feedback->replay!='' )
                                     <tr>
                                         <td colspan="4">
                                             <div class="form-group">

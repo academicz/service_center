@@ -98,6 +98,7 @@
                             <ul class="collapse">
                                 <li><a href="{{route('serviceRequests')}}">Service Requests</a></li>
                                 <li><a href="{{route('getCustomers')}}">Customers</a></li>
+                                <li><a href="{{route('getStockPage')}}">Stock</a></li>
                             </ul>
                         </li>
                         <li>

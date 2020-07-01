@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Constants\Constants;
+use App\Http\Resources\FormResource\StockResource;
 use App\Models\Bill;
 use App\Models\BillItem;
 use App\Models\Login;
@@ -14,6 +15,7 @@ use App\Models\ServiceRequest;
 use App\Models\ServiceResponse;
 use App\Models\ShopImage;
 use App\Models\ShopType;
+use App\Models\Stock;
 use App\Notifications\UserNotification;
 use Exception;
 use Illuminate\Http\Request;
@@ -235,6 +237,15 @@ class ServiceCenterController extends Controller
             $billItem->price = $invoice['price'];
             $billItem->total = $invoice['total'];
             $billItem->save();
+
+            if ($invoice['item']!==0){
+                echo $invoice['item'];
+                $stocks = Stock::findOrFail($invoice['item']);
+
+                $stocks->stock = $stocks->stock - $invoice['quantity'];
+
+                $stocks->save();
+            }
         }
 
         return response()->json(['invoiceId' => $bill->id]);
@@ -316,5 +327,36 @@ class ServiceCenterController extends Controller
         $requests = ServiceRequest::where('service_center_id', shop()->id)->get();
 
         return view('Shop.reports', compact('bills', 'requests'));
+    }
+    public function getStockPage(Request $request)
+    {
+        if($request->has('json')){
+            $stocks = Stock::where('service_center_id', shop()->id)->paginate(10);
+            return response()->json(
+                    ['stocks' => StockResource::collection($stocks)]
+            );
+        } else {
+            $stocks = Stock::where('service_center_id', shop()->id)->paginate(10);
+//        $request->status = Constants::$CLOSED_REQUEST;
+//        $request->save();
+
+//        return redirect()->route('serviceRequest', ['id' => $id])->with(['success' => 'Service request clossed successfully']);
+            return view('Shop.stock', compact('stocks'));
+        }
+    }
+    public function saveStock(Request $request){
+        $request = $request->validate([
+            'item' => 'required',
+            'amount' => 'required|numeric',
+            'stock' => 'required|numeric',
+        ]);
+        $stock = new Stock();
+        $stock->amount = $request['amount'];
+        $stock->item=$request['item'];
+        $stock->stock =$request['stock'];
+        $stock->service_center_id = shop()->id;
+        $stock->save();
+
+        return redirect()->route('getStockPage')->with(['success' => 'Item Added']);
     }
 }
