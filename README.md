@@ -46,6 +46,10 @@ Shop dashboard available at /shop
   
 4. Seed initial data
 
-    `php artisan db:seed`
+    `php artisan db:seed
+    
+5. Run dev server
+    
+    `php artisan serve `
     
   
