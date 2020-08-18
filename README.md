@@ -37,19 +37,19 @@ Shop dashboard available at /shop
 ### Installation
 1. Install project dependencies using 
 
-    `composer install`
+    ```composer install```
 
 2. Rename .env.example to .env and update enviornment variables.
 3. Migrate database
 
-    `php artisan migrate`
+    ```php artisan migrate```
   
 4. Seed initial data
 
-    `php artisan db:seed
+    ```php artisan db:seed```
     
 5. Run dev server
     
-    `php artisan serve`
+    ```php artisan serve```
     
   
